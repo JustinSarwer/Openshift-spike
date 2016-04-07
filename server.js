@@ -2,7 +2,7 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
-
+var path = require('path');
 
 /**
  *  Define the sample application.
@@ -98,6 +98,11 @@ var SampleApp = function() {
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
+        };
+
+        self.routes['/click'] = function(req, res) {
+            res.setHeader('Content-Type', 'text/html');
+            res.sendfile('index.html', { root: path.join(__dirname, '/click') });
         };
     };
 
